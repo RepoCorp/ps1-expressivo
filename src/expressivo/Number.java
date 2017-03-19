@@ -22,7 +22,11 @@ public class Number implements Expression {
         this.number = num;
         checkRep();
     }
-    
+
+    public Expression differentiate (Variable var) {
+        return new Number(0);
+    }
+
     public double simplify() {
         return number;
     }

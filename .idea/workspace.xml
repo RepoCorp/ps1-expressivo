@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6251d3d1-c3ef-4ced-97e0-2aa8dbcce8bd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/expressivo/Expression.g" afterPath="$PROJECT_DIR$/src/expressivo/Expression.g" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/expressivo/Expression.java" afterPath="$PROJECT_DIR$/src/expressivo/Expression.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/expressivo/Mult.java" afterPath="$PROJECT_DIR$/src/expressivo/Mult.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/expressivo/Number.java" afterPath="$PROJECT_DIR$/src/expressivo/Number.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/expressivo/Plus.java" afterPath="$PROJECT_DIR$/src/expressivo/Plus.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/expressivo/Variable.java" afterPath="$PROJECT_DIR$/src/expressivo/Variable.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/expressivo/ExpressionTest.java" afterPath="$PROJECT_DIR$/test/expressivo/ExpressionTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -24,11 +23,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ExpressionTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ExpressionTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/expressivo/ExpressionTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="411" column="47" lean-forward="false" selection-start-line="411" selection-start-column="47" selection-end-line="411" selection-end-column="47" />
+            <state relative-caret-position="300">
+              <caret line="456" column="22" lean-forward="false" selection-start-line="456" selection-start-column="22" selection-end-line="456" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#579#580#0" expanded="true" />
@@ -44,23 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Expression.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/expressivo/Expression.java">
+      <file leaf-file-name="Plus.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/expressivo/Plus.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-495">
-              <caret line="73" column="74" lean-forward="false" selection-start-line="73" selection-start-column="74" selection-end-line="73" selection-end-column="74" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Expression.g" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/expressivo/Expression.g">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="32" lean-forward="false" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+            <state relative-caret-position="315">
+              <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -81,14 +68,14 @@
       <list>
         <option value="$PROJECT_DIR$/src/expressivo/ExpressionNumber.java" />
         <option value="$PROJECT_DIR$/src/expressivo/Sum.java" />
-        <option value="$PROJECT_DIR$/src/expressivo/Variable.java" />
-        <option value="$PROJECT_DIR$/src/expressivo/Number.java" />
-        <option value="$PROJECT_DIR$/src/expressivo/Plus.java" />
-        <option value="$PROJECT_DIR$/src/expressivo/Mult.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/expressivo/Expression.g" />
+        <option value="$PROJECT_DIR$/src/expressivo/Number.java" />
+        <option value="$PROJECT_DIR$/src/expressivo/Variable.java" />
         <option value="$PROJECT_DIR$/src/expressivo/Expression.java" />
+        <option value="$PROJECT_DIR$/src/expressivo/Mult.java" />
         <option value="$PROJECT_DIR$/test/expressivo/ExpressionTest.java" />
+        <option value="$PROJECT_DIR$/src/expressivo/Plus.java" />
       </list>
     </option>
   </component>
@@ -636,12 +623,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1489930969254</updated>
-      <workItem from="1489930976491" duration="25501000" />
+      <workItem from="1489930976491" duration="27642000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25501000" />
+    <option name="totallyTimeSpent" value="27642000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -698,7 +685,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/expressivo/Number.java</url>
-          <line>34</line>
+          <line>38</line>
           <properties />
         </line-breakpoint>
       </breakpoints>
@@ -727,68 +714,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/expressivo/Number.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/expressivo/Variable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="e#691#692#0" expanded="false" />
-            <element signature="e#726#727#0" expanded="false" />
-            <element signature="e#1418#1419#0" expanded="false" />
-            <element signature="e#1464#1465#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/expressivo/Plus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="43" column="48" lean-forward="false" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
-          <folding>
-            <element signature="e#697#698#0" expanded="false" />
-            <element signature="e#762#763#0" expanded="false" />
-            <element signature="e#1457#1458#0" expanded="false" />
-            <element signature="e#1514#1515#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/expressivo/Mult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="26" column="41" lean-forward="false" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
-          <folding>
-            <element signature="e#711#712#0" expanded="false" />
-            <element signature="e#790#791#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/expressivo/Expression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-495">
-          <caret line="73" column="74" lean-forward="false" selection-start-line="73" selection-start-column="74" selection-end-line="73" selection-end-column="74" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -800,10 +730,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/expressivo/Expression.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="173" column="4" lean-forward="true" selection-start-line="173" selection-start-column="4" selection-end-line="173" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/expressivo/Variable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="29" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/expressivo/Mult.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="28" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/expressivo/Number.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="22" column="19" lean-forward="true" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
+          <folding>
+            <element signature="e#535#536#0" expanded="true" />
+            <element signature="e#571#572#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/expressivo/ExpressionTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="411" column="47" lean-forward="false" selection-start-line="411" selection-start-column="47" selection-end-line="411" selection-end-column="47" />
+        <state relative-caret-position="300">
+          <caret line="456" column="22" lean-forward="false" selection-start-line="456" selection-start-column="22" selection-end-line="456" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#579#580#0" expanded="true" />
@@ -815,6 +782,14 @@
             <element signature="e#3564#3565#0" expanded="true" />
             <element signature="e#3620#3621#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/expressivo/Plus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

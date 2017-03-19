@@ -21,6 +21,12 @@ public class Mult implements Expression {
         checkRep();
     }
 
+    public Expression differentiate (Variable var) {
+        Expression diffLeft = new Mult(this.left, this.right.differentiate(var));
+        Expression diffRight = new Mult(this.right, this.left.differentiate(var));
+
+        return new Plus(diffLeft, diffRight);
+    }
     /**
      * @return a parsable representation of this expression, such that
      * for all e:Expression, e.equals(Expression.parse(e.toString())).

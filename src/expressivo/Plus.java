@@ -23,6 +23,13 @@ public class Plus implements Expression {
         checkRep();
     }
 
+    public Expression differentiate (Variable var) {
+        Expression diffLeft = this.left.differentiate(var);
+        Expression diffRight = this.right.differentiate(var);
+
+        return new Plus(diffLeft, diffRight);
+    }
+
     /**
      * @return a parsable representation of this expression, such that
      * for all e:Expression, e.equals(Expression.parse(e.toString())).

@@ -293,7 +293,7 @@ public class ExpressionTest {
         Mult testMult = new Mult(testNumber, testNumber);
         Mult testMultMult = new Mult(testMult, testNumber);
 
-        assertEquals("Mult to string is not what expected", "(678) * ((678) * (678))", testMultMult.toString());
+        assertEquals("Mult to string is not what expected", "((678) * (678)) * (678)", testMultMult.toString());
     }
 
     @Test
@@ -418,4 +418,48 @@ public class ExpressionTest {
         assertEquals("4 + (3) * (1) + ((2) * (1)) * (1) + (((1) * (1)) * (1)) * (1)", lacosa.toString() );
     }
 
+
+    @Test
+    public void testNumDiff() {
+        Number testNum = new Number(4);
+        Variable testVar = new Variable("cata");
+
+        assertEquals("", "0", testNum.differentiate(testVar).toString() );
+    }
+
+    @Test
+    public void testVarDiffDep() {
+        Variable testVar = new Variable("cata");
+        Variable testVar2 = new Variable("cata");
+
+        assertEquals("", "1", testVar.differentiate(testVar2).toString() );
+    }
+
+    @Test
+    public void testVarDiffNotDep() {
+        Variable testVar = new Variable("cata");
+        Variable testVar2 = new Variable("catla");
+
+        assertEquals("", "0", testVar.differentiate(testVar2).toString() );
+    }
+
+    @Test
+    public void testMulDiffNumb() {
+        Number testNum = new Number(4);
+        Variable testVar = new Variable("cata");
+
+        Mult testMult = new Mult(testNum, testNum);
+
+        assertEquals("", "(4) * (0) + (4) * (0)", testMult.differentiate(testVar).toString() );
+    }
+
+    @Test
+    public void testMulDiffNumbyVar() {
+        Number testNum = new Number(4);
+        Variable testVar = new Variable("cata");
+
+        Mult testMult = new Mult(testNum, testVar);
+
+        assertEquals("", "(4) * (1) + (cata) * (0)", testMult.differentiate(testVar).toString() );
+    }
 }

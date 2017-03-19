@@ -20,6 +20,14 @@ public class Variable implements Expression {
         this.variableName = variable;
         checkRep();
     }
+
+    public Expression differentiate (Variable var) {
+        if (this.equals(var)) {
+            return new Number(1);
+        } else {
+            return new Number(0);
+        }
+    }
     
     /**
      * @return a parsable representation of this expression, such that
