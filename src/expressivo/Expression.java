@@ -17,7 +17,7 @@ public interface Expression {
     
     // Datatype definition
     //    IntegerExpression = Number(n:int)
-    //            + Variables
+    //            + Variable(s:string)
     //            + Plus(left:IntegerExpression, right:IntegerExpression)
     //            + Mult(left:IntegerExpression, right:IntegerExpression)
             
@@ -34,6 +34,7 @@ public interface Expression {
     /**
      * @return a parsable representation of this expression, such that
      * for all e:Expression, e.equals(Expression.parse(e.toString())).
+     * Doesn't include any spaces and only shows decimal point if not integer
      */
     @Override 
     public String toString();
