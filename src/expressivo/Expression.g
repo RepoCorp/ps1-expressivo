@@ -14,8 +14,10 @@
 root ::= sum;
 @skip whitespace{
 	sum ::= primitive ('+' primitive)*;
-	primitive ::= number | '(' sum ')';
+	mul ::= factor ('*' factor)+;
+	factor ::= number | '(' sum ')' | '(' mul ')';
+	primitive ::= number | '(' sum ')' | mul;
 }
-number ::= [0-9]+;
+number ::= [0-9]+ '.'? [0-9]*;
 
 whitespace ::= [ ]+;

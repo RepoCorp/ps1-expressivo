@@ -1,5 +1,8 @@
 package expressivo;
 
+import java.io.File;
+import java.io.IOException;
+
 import lib6005.parser.*;
 
 /**
@@ -20,17 +23,131 @@ public interface Expression {
     //            + Variable(s:string)
     //            + Plus(left:IntegerExpression, right:IntegerExpression)
     //            + Mult(left:IntegerExpression, right:IntegerExpression)
-            
+
+    enum ExpressionGrammar {ROOT, SUM, MUL, PRIMITIVE, NUMBER, WHITESPACE, FACTOR};
+
     /**
      * Parse an expression.
      * @param input expression to parse, as defined in the PS1 handout.
      * @return expression AST for the input
+     * @throws IOException 
+     * @throws UnableToParseException 
      * @throws IllegalArgumentException if the expression is invalid
      */
-    public static Expression parse(String input) {
-        throw new RuntimeException("unimplemented");
+    public static Expression parse(String input) throws UnableToParseException, IOException {
+        Parser<ExpressionGrammar> parser =
+                GrammarCompiler.compile(new File("src/expressivo/Expression.g"), ExpressionGrammar.ROOT);
+        ParseTree<ExpressionGrammar> tree = parser.parse(input);
+        System.out.println(tree.toString());
+        // tree.display();
+        return Expression.buildAST(tree);
     }
-    
+
+    /**
+     * Function converts a ParseTree to an IntegerExpression.
+     * @param p
+     *  ParseTree<IntegerGrammar> that is assumed to have been constructed by the grammar in IntegerExpression.g
+     * @return
+     */
+    public static Expression buildAST(ParseTree<ExpressionGrammar> p){
+
+        switch(p.getName()){
+        /*
+         * Since p is a ParseTree parameterized by the type IntegerGrammar, p.getName()
+         * returns an instance of the IntegerGrammar enum. This allows the compiler to check
+         * that we have covered all the cases.
+         */
+            case NUMBER:
+            /*
+             * A number will be a terminal containing a number.
+             */
+                return new Number(Double.parseDouble(p.getContents()));
+            case PRIMITIVE:
+            /*
+             * A primitive will have either a number or a sum as child (in addition to some whitespace)
+             * By checking which one, we can determine which case we are in.
+             */
+
+                if(!p.childrenByName(ExpressionGrammar.NUMBER).isEmpty()){
+                    return buildAST(p.childrenByName(ExpressionGrammar.NUMBER).get(0));
+                }else if(p.childrenByName(ExpressionGrammar.SUM).isEmpty()){
+                    return buildAST(p.childrenByName(ExpressionGrammar.MUL).get(0));
+                }else{
+                    return buildAST(p.childrenByName(ExpressionGrammar.SUM).get(0));
+                }
+            case FACTOR:
+            /*
+             * A primitive will have either a number or a sum as child (in addition to some whitespace)
+             * By checking which one, we can determine which case we are in.
+             */
+
+                if(!p.childrenByName(ExpressionGrammar.NUMBER).isEmpty()){
+                    return buildAST(p.childrenByName(ExpressionGrammar.NUMBER).get(0));
+                }else if(p.childrenByName(ExpressionGrammar.SUM).isEmpty()){
+                    return buildAST(p.childrenByName(ExpressionGrammar.MUL).get(0));
+                }else{
+                    return buildAST(p.childrenByName(ExpressionGrammar.SUM).get(0));
+                }
+            case SUM:
+            /*
+             * A sum will have one or more children that need to be summed together.
+             * Note that we only care about the children that are primitive. There may also be
+             * some whitespace children which we want to ignore.
+             */
+                boolean first = true;
+                Expression result = null;
+                for(ParseTree<ExpressionGrammar> child : p.childrenByName(ExpressionGrammar.PRIMITIVE)){
+                    if(first){
+                        result = Expression.buildAST(child);
+                        first = false;
+                    }else{
+                        result = new Plus(result, Expression.buildAST(child));
+                    }
+                }
+                if (first) {
+                    throw new RuntimeException("sum must have a non whitespace child:" + p);
+                }
+                return result;
+            case MUL:
+            /*
+             * A sum will have one or more children that need to be summed together.
+             * Note that we only care about the children that are primitive. There may also be
+             * some whitespace children which we want to ignore.
+             */
+                boolean firstMul = true;
+                Expression resultMul = null;
+                for(ParseTree<ExpressionGrammar> child : p.childrenByName(ExpressionGrammar.FACTOR)){
+                    if(firstMul){
+                        resultMul = Expression.buildAST(child);
+                        firstMul = false;
+                    }else{
+                        resultMul = new Mult(resultMul, Expression.buildAST(child));
+                    }
+                }
+                if (firstMul) {
+                    throw new RuntimeException("sum must have a non whitespace child:" + p);
+                }
+                return resultMul;
+            case ROOT:
+            /*
+             * The root has a single sum or mul child, in addition to having potentially some whitespace.
+             */
+
+                return buildAST(p.childrenByName(ExpressionGrammar.SUM).get(0));
+
+            case WHITESPACE:
+            /*
+             * Since we are always avoiding calling buildAST with whitespace,
+             * the code should never make it here.
+             */
+                throw new RuntimeException("You should never reach here:" + p);
+        }
+        /*
+         * The compiler should be smart enough to tell that this code is unreachable, but it isn't.
+         */
+        throw new RuntimeException("You should never reach here:" + p);
+    }
+
     /**
      * @return a parsable representation of this expression, such that
      * for all e:Expression, e.equals(Expression.parse(e.toString())).

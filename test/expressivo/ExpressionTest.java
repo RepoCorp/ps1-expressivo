@@ -5,7 +5,12 @@ package expressivo;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+
 import org.junit.Test;
+
+import lib6005.parser.UnableToParseException;
+
 import static org.hamcrest.CoreMatchers.instanceOf;
 
 /**
@@ -279,7 +284,7 @@ public class ExpressionTest {
         Number testNumber = new Number(678);
         Mult testMult = new Mult(testNumber, testNumber);
 
-        assertEquals("Mult to string is not what expected", "(678 * 678)", testMult.toString());
+        assertEquals("Mult to string is not what expected", "(678) * (678)", testMult.toString());
     }
 
     @Test
@@ -288,7 +293,7 @@ public class ExpressionTest {
         Mult testMult = new Mult(testNumber, testNumber);
         Mult testMultMult = new Mult(testMult, testNumber);
 
-        assertEquals("Mult to string is not what expected", "((678 * 678) * 678)", testMultMult.toString());
+        assertEquals("Mult to string is not what expected", "(678) * ((678) * (678))", testMultMult.toString());
     }
 
     @Test
@@ -324,5 +329,93 @@ public class ExpressionTest {
 
 
     // TODO tests for Expression
+
+//3 + 2.4
+//3 * x + 2.4
+//3 * (x + 2.4)
+//((3 + 4) * x * x)
+//foo + bar+baz
+//(2*x    )+    (    y*x    )
+//4 + 3 * x + 2 * x * x + 1 * x * x * (((x)))
+
     
+    @Test
+    public void testParse() throws UnableToParseException, IOException {
+        Expression lacosa = Expression.parse("4 + 3 * 1 + 2 * 1 * 1 + 1 * 1 * 1 * (((1)))");
+        assertThat(lacosa, instanceOf(Expression.class));
+    }
+    
+    @Test
+    public void testPars10e() throws UnableToParseException, IOException {
+        Expression lacosa = Expression.parse("(2*3.4    )+    (    5*77    )");
+        assertThat(lacosa, instanceOf(Expression.class));
+    }
+    
+    @Test
+    public void testParse9() throws UnableToParseException, IOException {
+        Expression lacosa = Expression.parse("((3 + 4) * 5 * 5)");
+        assertThat(lacosa, instanceOf(Expression.class));
+    }
+    
+    @Test
+    public void testParse8() throws UnableToParseException, IOException {
+        Expression lacosa = Expression.parse("24 * (30 + 4.1)");
+        assertThat(lacosa, instanceOf(Expression.class));
+    }
+
+
+    @Test
+    public void testParse33() throws UnableToParseException, IOException {
+        Expression lacosa = Expression.parse("24 * 30 + 4.1");
+        assertThat(lacosa, instanceOf(Expression.class));
+    }
+    
+    @Test
+    public void testParse2() throws UnableToParseException, IOException {
+        Expression lacosa = Expression.parse("3 * 4");
+        assertThat(lacosa, instanceOf(Expression.class));
+    }
+    
+    @Test
+    public void testParse3() throws UnableToParseException, IOException {
+        Expression lacosa = Expression.parse("3 * 4.1");
+        assertThat(lacosa, instanceOf(Expression.class));
+    }
+    
+    @Test
+    public void testParse4() throws UnableToParseException, IOException {
+        Expression lacosa = Expression.parse("(4.1 + 2)");
+        assertThat(lacosa, instanceOf(Expression.class));
+    }
+   
+    @Test
+    public void testParse5() throws UnableToParseException, IOException {
+        Expression lacosa = Expression.parse("30999.44 + 34");
+        assertThat(lacosa, instanceOf(Expression.class));
+    }
+    
+    @Test
+    public void testParse6() throws UnableToParseException, IOException {
+        Expression lacosa = Expression.parse("28 * (30 + 34)");
+        assertThat(lacosa, instanceOf(Expression.class));
+    }
+    
+    @Test
+    public void testPars7e() throws UnableToParseException, IOException {
+        Expression lacosa = Expression.parse("(24 * 30) + 34");
+        assertThat(lacosa, instanceOf(Expression.class));
+    }
+
+    @Test
+    public void testPars7eToString() throws UnableToParseException, IOException {
+        Expression lacosa = Expression.parse("(24 * 30) + 34");
+        assertEquals("(24) * (30) + 34", lacosa.toString() );
+    }
+    
+    @Test
+    public void testPars99eToString() throws UnableToParseException, IOException {
+        Expression lacosa = Expression.parse("4 + 3 * 1 + 2 * 1 * 1 + 1 * 1 * 1 * (((1)))");
+        assertEquals("4 + (3) * (1) + ((2) * (1)) * (1) + (((1) * (1)) * (1)) * (1)", lacosa.toString() );
+    }
+
 }

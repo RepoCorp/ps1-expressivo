@@ -24,10 +24,11 @@ public class Mult implements Expression {
     /**
      * @return a parsable representation of this expression, such that
      * for all e:Expression, e.equals(Expression.parse(e.toString())).
+     * Adds parenthesis ..... bla bla bla
      */
     @Override
     public String toString() {
-        return "(" + left.toString() + " * " + right.toString() + ")";
+        return "(" + left.toString() + ") * (" + right.toString() + ")";
     }
 
     /**
