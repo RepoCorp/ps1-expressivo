@@ -13,6 +13,8 @@ import lib6005.parser.UnableToParseException;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 
+import java.util.*;
+
 /**
  * Tests for the Expression abstract data type.
  */
@@ -472,6 +474,57 @@ public class ExpressionTest {
     @Test
     public void testCommandDiff() throws IOException, UnableToParseException {
         assertEquals("", "0 + 0", Commands.differentiate("5+4", "cata"));
+    }
+
+    @Test
+    public void testVariableSimplify() {
+        HashMap<String, Double> map=new HashMap<String, Double>();
+        map.put("cata", 4.0);
+
+        Variable testVar = new Variable("cata");
+
+        assertEquals((double)4.0, testVar.simplify(map), 0.001);
+    }
+    
+    @Test(expected = Exception.class)
+    public void testVariableSimplifyNoEnv() {
+        HashMap<String, Double> map=new HashMap<String, Double>();
+        map.put("cata", 4.0);
+
+        Variable testVar = new Variable("catal");
+
+        testVar.simplify(map);
+    }
+    
+    @Test
+    public void testNumSimplify() {
+        HashMap<String, Double> map=new HashMap<String, Double>();
+        map.put("cata", 4.0);
+
+        Number testVar = new Number(4);
+
+        assertEquals(4, testVar.simplify(map), 0.001);
+    }
+    
+    @Test
+    public void testSumSimplify() {
+        HashMap<String, Double> map=new HashMap<String, Double>();
+        map.put("cata", 4.0);
+
+        Number testNumber = new Number(4);
+        Plus testPlus = new Plus(testNumber, testNumber);
+
+        assertEquals(8, testPlus.simplify(map), 0.001);
+    }
+
+    @Test
+    public void testSumSimplify2() throws IOException, UnableToParseException {
+        HashMap<String, Double> map=new HashMap<String, Double>();
+        map.put("cata", 4.0);
+
+        Expression testExpression = Expression.parse("(cata + 4) * cata");
+
+        assertEquals(32, testExpression.simplify(map), 0.001);
     }
 
 }

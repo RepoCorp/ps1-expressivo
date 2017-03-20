@@ -2,6 +2,8 @@ package expressivo;
 
 import Java.lang.String.*;
 
+import java.util.HashMap;
+
 public class Plus implements Expression {
 
     private final Expression left;
@@ -21,6 +23,13 @@ public class Plus implements Expression {
         this.left = left;
         this.right = right;
         checkRep();
+    }
+
+    public double simplify(HashMap<String, Double> environment) {
+        Double leftValue = left.simplify(environment);
+        Double rightValue = right.simplify(environment);
+
+        return leftValue + rightValue;
     }
 
     public Expression differentiate (Variable var) {

@@ -1,5 +1,8 @@
 package expressivo;
 
+import java.util.HashMap;
+import java.util.*;
+
 public class Mult implements Expression {
 
     private final Expression left;
@@ -19,6 +22,13 @@ public class Mult implements Expression {
         this.left = left;
         this.right = right;
         checkRep();
+    }
+
+    public double simplify(Map<String, Double> environment) {
+        Double leftValue = left.simplify(environment);
+        Double rightValue = right.simplify(environment);
+
+        return leftValue * rightValue;
     }
 
     public Expression differentiate (Variable var) {

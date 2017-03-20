@@ -1,6 +1,10 @@
 package expressivo;
 
 import Java.lang.String.*;
+import java.util.*;
+
+
+import java.util.DoubleSummaryStatistics;
 
 public class Variable implements Expression {
 
@@ -21,12 +25,21 @@ public class Variable implements Expression {
         checkRep();
     }
 
+    public double simplify(Map<String, Double> environment) {
+        return environment.get(this.variableName);
+    }
+
+
     public Expression differentiate (Variable var) {
+        Number newNumber;
+
         if (this.equals(var)) {
-            return new Number(1);
+            newNumber = new Number(1);
         } else {
-            return new Number(0);
+            newNumber = new Number(0);
         }
+        checkRep();
+        return newNumber;
     }
     
     /**

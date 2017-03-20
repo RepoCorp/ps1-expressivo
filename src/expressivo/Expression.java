@@ -2,6 +2,8 @@ package expressivo;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.*;
 
 import lib6005.parser.*;
 
@@ -172,6 +174,9 @@ public interface Expression {
     // TODO more instance methods
 
     public Expression differentiate (Variable var);
+
+    public double simplify(Map<String, Double> environment);
+
 
 
     /* Copyright (c) 2015-2017 MIT 6.005 course staff, all rights reserved.

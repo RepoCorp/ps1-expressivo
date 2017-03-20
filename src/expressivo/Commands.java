@@ -52,8 +52,17 @@ public class Commands {
      * @throws IllegalArgumentException if the expression is invalid
      */
     public static String simplify(String expression, Map<String,Double> environment) {
-        throw new RuntimeException("unimplemented");
-    }
+        Expression expressionObject;
+        
+        try {
+            expressionObject = Expression.parse(expression);
+            return String.valueOf(expressionObject.simplify(environment));
+        } catch (UnableToParseException | IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        return "Error";    }
     
     /* Copyright (c) 2015-2017 MIT 6.005 course staff, all rights reserved.
      * Redistribution of original or derived work requires permission of course staff.

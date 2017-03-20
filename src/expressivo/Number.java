@@ -4,6 +4,8 @@ import expressivo.Expression;
 
 import Java.lang.String.*;
 
+import java.util.HashMap;
+
 public class Number implements Expression {
 
     private final double number;
@@ -27,7 +29,7 @@ public class Number implements Expression {
         return new Number(0);
     }
 
-    public double simplify() {
+    public double simplify(HashMap<String, Double> environment) {
         return number;
     }
     
@@ -52,7 +54,7 @@ public class Number implements Expression {
     public boolean equals(Object thatObject) {
         if (!(thatObject instanceof Number)) return false;
         Number thatNumber = (Number) thatObject;
-        return this.number == thatNumber.simplify();
+        return this.number == thatNumber.number;
     }
 
     /**
