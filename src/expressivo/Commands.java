@@ -1,5 +1,8 @@
 package expressivo;
 
+import lib6005.parser.UnableToParseException;
+
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -21,7 +24,19 @@ public class Commands {
      * @throws IllegalArgumentException if the expression or variable is invalid
      */
     public static String differentiate(String expression, String variable) {
-        throw new RuntimeException("unimplemented");
+        Expression expressionObject;
+        
+        try {
+            expressionObject = Expression.parse(expression);
+            Variable variableObject = new Variable(variable);
+            return expressionObject.differentiate(variableObject).toString();
+        } catch (UnableToParseException | IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        return "Error";
+
     }
     
     /**

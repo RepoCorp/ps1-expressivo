@@ -24,7 +24,7 @@ public interface Expression {
     //            + Plus(left:IntegerExpression, right:IntegerExpression)
     //            + Mult(left:IntegerExpression, right:IntegerExpression)
 
-    enum ExpressionGrammar {ROOT, SUM, MUL, PRIMITIVE, NUMBER, WHITESPACE, FACTOR};
+    enum ExpressionGrammar {ROOT, SUM, MUL, PRIMITIVE, NUMBER, WHITESPACE, FACTOR, VARIABLE};
 
     /**
      * Parse an expression.
@@ -62,20 +62,14 @@ public interface Expression {
              * A number will be a terminal containing a number.
              */
                 return new Number(Double.parseDouble(p.getContents()));
+            case VARIABLE:
+            /*
+             * A number will be a terminal containing a number.
+             */
+                return new Variable(p.getContents());
             case PRIMITIVE:
-            /*
-             * A primitive will have either a number or a sum as child (in addition to some whitespace)
-             * By checking which one, we can determine which case we are in.
-             */
-
-                if(!p.childrenByName(ExpressionGrammar.NUMBER).isEmpty()){
-                    return buildAST(p.childrenByName(ExpressionGrammar.NUMBER).get(0));
-                }else if(p.childrenByName(ExpressionGrammar.SUM).isEmpty()){
-                    return buildAST(p.childrenByName(ExpressionGrammar.MUL).get(0));
-                }else{
-                    return buildAST(p.childrenByName(ExpressionGrammar.SUM).get(0));
-                }
             case FACTOR:
+
             /*
              * A primitive will have either a number or a sum as child (in addition to some whitespace)
              * By checking which one, we can determine which case we are in.
@@ -83,11 +77,14 @@ public interface Expression {
 
                 if(!p.childrenByName(ExpressionGrammar.NUMBER).isEmpty()){
                     return buildAST(p.childrenByName(ExpressionGrammar.NUMBER).get(0));
+                }else if(!p.childrenByName(ExpressionGrammar.VARIABLE).isEmpty()){
+                    return buildAST(p.childrenByName(ExpressionGrammar.VARIABLE).get(0));
                 }else if(p.childrenByName(ExpressionGrammar.SUM).isEmpty()){
                     return buildAST(p.childrenByName(ExpressionGrammar.MUL).get(0));
                 }else{
                     return buildAST(p.childrenByName(ExpressionGrammar.SUM).get(0));
                 }
+
             case SUM:
             /*
              * A sum will have one or more children that need to be summed together.
@@ -140,7 +137,7 @@ public interface Expression {
              * Since we are always avoiding calling buildAST with whitespace,
              * the code should never make it here.
              */
-                throw new RuntimeException("You should never reach here:" + p);
+                throw new RuntimeException("You should never reach here white:" + p);
         }
         /*
          * The compiler should be smart enough to tell that this code is unreachable, but it isn't.

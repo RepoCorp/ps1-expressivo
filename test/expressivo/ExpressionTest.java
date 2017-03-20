@@ -407,6 +407,12 @@ public class ExpressionTest {
     }
 
     @Test
+    public void testParseWithVariable() throws UnableToParseException, IOException {
+        Expression lacosa = Expression.parse("(24 * cata) + 34");
+        assertThat(lacosa, instanceOf(Expression.class));
+    }
+
+    @Test
     public void testPars7eToString() throws UnableToParseException, IOException {
         Expression lacosa = Expression.parse("(24 * 30) + 34");
         assertEquals("(24) * (30) + 34", lacosa.toString() );
@@ -462,4 +468,10 @@ public class ExpressionTest {
 
         assertEquals("", "(4) * (1) + (cata) * (0)", testMult.differentiate(testVar).toString() );
     }
+
+    @Test
+    public void testCommandDiff() throws IOException, UnableToParseException {
+        assertEquals("", "0 + 0", Commands.differentiate("5+4", "cata"));
+    }
+
 }
